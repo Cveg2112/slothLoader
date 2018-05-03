@@ -25,6 +25,7 @@ If srcset is set on an image (even if it's empty), the script will instead `data
 ```
 
 ### background image:
+On an element that is not either a source or img tag, `data-lazy` will be loaded into `style="background-image: url( [image] );"`
 ```
 <div class="lazy" data-lazy="https://via.placeholder.com/500x300"></div>
 ```
