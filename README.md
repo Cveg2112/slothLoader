@@ -1,7 +1,7 @@
 # slothLoader
 Another lazyloading plugin from an uninspired mind.
 
-## its ez to be lazy
+## its e-z to be lay-z
 Add the plugin code to your site. Then call slothLoader like:
 ```
 $('body').slothLoader({
