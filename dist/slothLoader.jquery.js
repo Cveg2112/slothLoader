@@ -1,23 +1,24 @@
-;( function( $, window, document, undefined ) {
+;
+(function($, window, document, undefined) {
 
-		"use strict";
+    "use strict";
 
-		var pluginName = "slothLoader",
-			defaults = {
-				'offset': $(window).height(), //how long before it kicks in
-		    'elem': '.lazy-loadable', //looks for this class to lazy load
-		    'dataSrc': 'lazy' //define own data attr
-			};
+    var pluginName = "slothLoader",
+        defaults = {
+            'offset': $(window).height(), //how long before it kicks in
+            'elem': '.lazy-loadable', //looks for this class to lazy load
+            'dataSrc': 'lazy' //define own data attr
+        };
 
-		// The actual plugin constructor
-		function Plugin ( element, options ) {
-			this.element = element;
+    // The actual plugin constructor
+    function Plugin(element, options) {
+        this.element = element;
 
-			this.settings = $.extend( {}, defaults, options );
-			this._defaults = defaults;
-			this._name = pluginName;
-			this.init();
-		}
+        this.settings = $.extend({}, defaults, options);
+        this._defaults = defaults;
+        this._name = pluginName;
+        this.init();
+    }
 
 		// Avoid Plugin.prototype conflicts
 		$.extend( Plugin.prototype, {
@@ -64,13 +65,13 @@
 
 		});
 
-		$.fn[ pluginName ] = function( options ) {
-			return this.each( function() {
-				if ( !$.data( this, "plugin_" + pluginName ) ) {
-					$.data( this, "plugin_" +
-						pluginName, new Plugin( this, options ) );
-				}
-			} );
-		};
+    $.fn[pluginName] = function(options) {
+        return this.each(function() {
+            if (!$.data(this, "plugin_" + pluginName)) {
+                $.data(this, "plugin_" +
+                    pluginName, new Plugin(this, options));
+            }
+        });
+    };
 
-} )( jQuery, window, document );
+})(jQuery, window, document);
