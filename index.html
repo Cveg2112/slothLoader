@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+  body { background-color: #3f3f3f; }
+  .container { text-align: center; max-width: 1000px; border-right: 6px groove #2ECC71; border-left: 6px groove #2ECC71; margin: 0 auto; color: #2ECC71; font-family: 'VT323', monospace; letter-spacing: .1em; }
+  .container h1 { font-size: 60px; }
+  .container h2 { font-size: 36px; }
+  .bg, img { width: 500px; height: 300px; display: inline-block; }
+  .makeyouscroll { padding-top: 1500px; }
+  .item { padding: 500px 0; }
+  #map-canvas { width: 500px; height: 500px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Lazyload images - Scroll down</h1>
+    <div class="makeyouscroll"></div>
+    <div class="item">
+        <h2>< img > tag:</h2>
+        <img src="" data-lazy="https://via.placeholder.com/500x300" class="lazy">
+    </div>
+    <div class="item">
+        <h2>< img > tag with a srcset attr defined:</h2>
+        <img src="https://via.placeholder.com/100x100" srcset="" data-lazy="https://via.placeholder.com/1000x550 1000w, https://via.placeholder.com/700x350 700w" class="lazy">
+    </div>
+    <div class="item" >
+        <h2>background image: </h2>
+        <div class="bg lazy" data-lazy="https://via.placeholder.com/500x300"></div>
+    </div>
+    <div class="item">
+        <h2>< picture > tag with < source > elements:</h2>
+        <picture>
+            <source class="lazy" srcset="" data-lazy="https://via.placeholder.com/700x350" media="(min-width: 769px)">
+            <source class="lazy" srcset="" data-lazy="https://via.placeholder.com/300x150" media="(min-width: 376px)">
+            <img srcset="https://via.placeholder.com/100x100">
+        </picture>
+    </div>
+
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="dist/slothLoader.jquery.js"></script>
+  <script>
+  $('body').slothLoader({
+    'offset': $(window).height(), //how long before it kicks in
+    'elem': '.lazy', //looks for this class to lazy load
+    'dataSrc': 'lazy' //define own data attr
+  });
+  </script>
+</body>
+</html>

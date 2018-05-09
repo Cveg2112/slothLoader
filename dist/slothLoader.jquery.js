@@ -23,7 +23,7 @@
 		$.extend( Plugin.prototype, {
 			init: function() {
 	      $(window).scroll( $.proxy( this._sloth, this ) );
-	      $(window).load( $.proxy( this._sloth, this ) );
+	      $(window).on( 'load', $.proxy( this._sloth, this ) );
 			},
 
 			_sloth: function(){
@@ -37,28 +37,32 @@
 					 //look for element type - img, source or everything else
 					 var elemType = this.localName;
 					 if( scrollDist > scrollTop ){
-						 if(elemType == 'img'){
-							 //check to see if image has srcset val & lazyload that instead
-							 if( $(this).attr('srcset') != undefined ){
-								 $(this).attr('srcset', dataImage);
-								 $(this).addClass('loaded');
-							 } else {
-								 $(this).attr('src', dataImage);
-								 $(this).addClass('loaded');
-							 }
-						 } else if(elemType == 'source') {
-							 $(this).attr('srcset', dataImage);
-							 $(this).addClass('loaded');
-						 } else {
-							 $(this).css('backgroundImage', 'url(' + dataImage + ')');
-							 $(this).addClass('loaded');
-						 }
+						switch(elemType){
+							case 'img':
+								//check to see if image has srcset val & lazyload that instead
+	 							if( $(this).attr('srcset') != undefined ){
+	 								$(this).attr('srcset', dataImage);
+	 								$(this).addClass('loaded');
+	 							} else {
+	 								$(this).attr('src', dataImage);
+	 								$(this).addClass('loaded');
+	 							}
+								break;
+							case 'source':
+								$(this).attr('srcset', dataImage);
+								$(this).addClass('loaded');
+								break;
+							default:
+								$(this).css('backgroundImage', 'url(' + dataImage + ')');
+								$(this).addClass('loaded');
+								break;
+						}
 					 }
 				 }
 			 });
 		 }
 
-		} );
+		});
 
 		$.fn[ pluginName ] = function( options ) {
 			return this.each( function() {
