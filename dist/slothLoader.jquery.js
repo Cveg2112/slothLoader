@@ -27,6 +27,11 @@
 	      $(window).on( 'load', $.proxy( this._sloth, this ) );
 			},
 
+      loadSloth: function(){
+        console.log('slothy')
+        this._sloth();
+      },
+
 			_sloth: function(){
 			 var scrollDist = $(window).scrollTop() + this.settings.offset;
 			 var el = $(this.settings.elem);
@@ -70,6 +75,13 @@
             if (!$.data(this, "plugin_" + pluginName)) {
                 $.data(this, "plugin_" +
                     pluginName, new Plugin(this, options));
+            }else{
+              var plugin = $.data(this, "plugin_" + pluginName);
+              switch(options){
+                case 'loadSloth':
+                  plugin.loadSloth();
+                break;
+              }
             }
         });
     };

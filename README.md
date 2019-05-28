@@ -41,5 +41,6 @@ Will loop through all the existing source elements that have the class set
 </picture>
 ```
 
-    
-    
+### load yerself
+
+Call slothloader like `$('body').slothLoader('loadSloth');` to init the load yourself. Useful if you're using AJAX.
