@@ -28,7 +28,6 @@
 			},
 
       loadSloth: function(){
-        console.log('slothy')
         this._sloth();
       },
 
